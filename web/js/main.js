@@ -1,13 +1,14 @@
 (function (App) {
     App.populator('home', function (page) {
-    	$('#camBtn').on('click', function(){
-    		cards.photo.get(function (photos)  {
-                    if (!photos) {
+    	$(page)
+    		.on('click', "#camBtn",function(){
+	    		cards.photo.get(function (photos)  {
+	                    if (!photos) {
 
-                    } else {
+	                    } else {
 
-                    }
-            });
+	                    }
+	            });
     	});
     });
 
