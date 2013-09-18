@@ -18,9 +18,8 @@
 
         <div class="app-page" data-page="home">
             <div class="app-topbar">
-
                 <div class="app-title">Ping!</div>
-
+                <div class="app-button right" data-target="contacts"><img>Contacts</div>
             </div>
             <div class="app-content">
 
@@ -36,14 +35,24 @@
             </div>
         </div>
 
-        <div class="app-page" data-page="contact">
+        <div class="app-page" data-page="contacts">
             <div class="app-topbar">
-                <div class="app-button left" data-back="true" data-autotitle="true"></div>
-                <div class="app-title">Contact</div>
+                <div class="app-button left" data-back="true" data-autotitle="true">Back</div>
+                <div class="app-title">Contacts</div>
             </div>
             <div class="app-content">
-                <div class="first-name"></div>
-                <div class="last-name"></div>
+                <div id="groups" class="app-section">
+                    <div class="listHeader">Groups:</div>
+                    <ul id="groupList" class="app-list">
+                        <li class="receiver">The girls next door</li>
+                    </ul>
+                </div>
+                <div id="contacts" class="app-section">
+                    <div class="listHeader">Contacts:</div>
+                    <ul id="contactList" class="app-list">
+                        <li class="receiver">Charles Lin</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
