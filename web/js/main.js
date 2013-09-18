@@ -2,7 +2,6 @@
 
     var photoUrl;
     var message;
-    var messagePlaceholder = "(optional: enter a message)"
 
     App.populator('home', function (page) {
         $(page)
@@ -14,16 +13,12 @@
                         $('#photo').attr('src', photos[0]);
                         photoUrl = photos[0];
                     }
-                })
+                })})
             .on('click', "#sendBtn", function() {
-                if ($('#message').val() == messagePlaceholder) {
-                    message = '';
-                } else {
+                if ($('#message').val().replace(' ','') != '') {
                     message = $('#message').val();
                 }
-                App.load('contacts');
             });
-        });
     });
 
     App.populator('contacts', function (page) {
