@@ -1,4 +1,30 @@
 /* put stuff here */
+#secPhoto {
+    height: 50%;
+    padding: 0.5em;
+}
+
 #camBtn {
-    height: auto;
+    height: 100%;
+}
+
+#photo {
+    height: 100%;
+}
+
+#received-photo {
+    height: 100%;
+    margin: auto;
+}
+.thumbBtn {
+    position: absolute;
+    bottom: 50px;
+}
+
+#thumbsUp {
+    left: 50px;
+}
+
+#thumbsDown{
+    right: 50px;
 }
