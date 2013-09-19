@@ -1,4 +1,4 @@
-function ContactCtrl($scope, $http) {
+function PingCtrl($scope, $http) {
 	cards.kik.getUser(function (user) {
         if ( !user ) {
             // user denied access to their information

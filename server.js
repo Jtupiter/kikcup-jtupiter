@@ -3,7 +3,7 @@ var express = require('express'),
     app = express(),
     server = require('http').createServer(app);
 
-server.listen(5050);
+server.listen(5000);
 
 app.use(express.static(__dirname + '/web'));
 

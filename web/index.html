@@ -15,58 +15,59 @@
 
     <body>
         <!-- Pages -->
+        <div ng-controller="PingCtrl">
+            <div class="app-page" data-page="home">
+                <div class="app-topbar">
+                    <div class="app-title">Ping!</div>
+                    <div class="app-button right" data-target="contacts"><img>Contacts</div>
+                    <div class="app-button left" data-target="receiving">test</div>
 
-        <div class="app-page" data-page="home">
-            <div class="app-topbar">
-                <div class="app-title">Ping!</div>
-                <div class="app-button right" data-target="contacts"><img>Contacts</div>
-                <div class="app-button left" data-target="receiving">test</div>
-
-            </div>
-            <div class="app-content">
-
-                <div class="app-section" id="secPhoto">
-                    <div class="app-button" id="camBtn"><img id="photo" src="/img/iphoto.png"></div>
                 </div>
+                <div class="app-content">
 
-                <div class="app-section" id="secMessage">
-                    <textarea class="app-input" id="message" placeholder="(optional: enter a message)"></textarea>
-                    <div class="app-button" id="sendBtn" data-target="contacts">Send</div>
-                </div>
+                    <div class="app-section" id="secPhoto">
+                        <div class="app-button" id="camBtn"><img id="photo" src="/img/iphoto.png"></div>
+                    </div>
 
-            </div>
-        </div>
+                    <div class="app-section" id="secMessage">
+                        <textarea class="app-input" id="message" placeholder="(optional: enter a message)"></textarea>
+                        <div class="app-button" id="sendBtn" data-target="contacts">Send</div>
+                    </div>
 
-        <div class="app-page" data-page="contacts" ng-controller="ContactCtrl">
-            <div class="app-topbar">
-                <div class="app-button left" data-back="true" data-autotitle="true">Back</div>
-                <div class="app-title">Contacts</div>
-            </div>
-            <div class="app-content">
-                <div id="groups" class="app-section">
-                    <div class="listHeader">Groups:</div>
-                    <ul id="groupList" class="app-list">
-                        <li class="receiver">The girls next door</li>
-                    </ul>
-                </div>
-                <div id="contacts" class="app-section">
-                    <div class="listHeader">Contacts:</div>
-                    <ul id="contactList" class="app-list">
-                        <li class="receiver">Charles Lin</li>
-                    </ul>
                 </div>
             </div>
-        </div>
 
-        <div class="app-page" data-page="receiving">
-            <div class="app-topbar"> 
-                <div class="app-button left" data-back="true">testback</div>
-                <div class="app-title">Ping!</div>
+            <div class="app-page" data-page="contacts">
+                <div class="app-topbar">
+                    <div class="app-button left" data-back="true" data-autotitle="true">Back</div>
+                    <div class="app-title">Contacts</div>
+                </div>
+                <div class="app-content">
+                    <div id="groups" class="app-section">
+                        <div class="listHeader">Groups:</div>
+                        <ul id="groupList" class="app-list">
+                            <li class="receiver">The girls next door</li>
+                        </ul>
+                    </div>
+                    <div id="contacts" class="app-section">
+                        <div class="listHeader">Contacts:</div>
+                        <ul id="contactList" class="app-list">
+                            <li class="receiver">Charles Lin</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="app-content">
-                <img id="received-photo" src="/img/iphoto.png">
-                <div class="app-button thumbBtn" id="thumbsUp">:)</div>
-                <div class="app-button thumbBtn" id="thumbsDown">:(</div>
+
+            <div class="app-page" data-page="receiving">
+                <div class="app-topbar"> 
+                    <div class="app-button left" data-back="true">testback</div>
+                    <div class="app-title">Ping!</div>
+                </div>
+                <div class="app-content">
+                    <img id="received-photo" src="/img/iphoto.png">
+                    <div class="app-button thumbBtn" id="thumbsUp">:)</div>
+                    <div class="app-button thumbBtn" id="thumbsDown">:(</div>
+                </div>
             </div>
         </div>
 
