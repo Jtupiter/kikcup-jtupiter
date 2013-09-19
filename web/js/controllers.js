@@ -8,6 +8,5 @@ function PingCtrl($scope, $http) {
     		$scope.user = $http.get('/user/' + user.username);
         }
     });
-	
 
 };
