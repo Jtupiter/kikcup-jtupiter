@@ -1,5 +1,5 @@
 function PingCtrl($scope, $http) {
-	cards.kik.getUser(function (user) {
+	/*cards.kik.getUser(function (user) {
         if ( !user ) {
             // user denied access to their information
             return;
@@ -7,6 +7,6 @@ function PingCtrl($scope, $http) {
         else {
     		$scope.user = $http.get('/user/' + user.username);
         }
-    });
+    });*/
 
 };
