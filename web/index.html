@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="cache.manifest">
+<html manifest="cache.manifest" ng-app>
     <head>
         <!-- Card info -->
         <title>Ping!</title>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="app-page" data-page="contacts">
+        <div class="app-page" data-page="contacts" ng-controller="ContactCtrl">
             <div class="app-topbar">
                 <div class="app-button left" data-back="true" data-autotitle="true">Back</div>
                 <div class="app-title">Contacts</div>
@@ -71,10 +71,11 @@
         </div>
 
         <!-- Scripts -->
-        <script src="/zerver/API.js"></script>
         <script src="http://zeptojs.com/zepto.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
         <script src="http://cdn.kik.com/cards/0/cards.js"></script>
         <script src="http://cdn.kik.com/app/1/app.js"></script>
         <script src="/js/main.js"></script>
+        <script src="/js/controllers.js"></script>
     </body>
 </html>

@@ -1,8 +1,4 @@
 (function (App) {
-
-    var photoUrl;
-    var message;
-
     App.populator('home', function (page) {
         $(page)
             .on('click', "#camBtn", function(){

@@ -1,1 +1,1 @@
-web: zerver -p --manifest=cache.manifest web
+web: node server.js
