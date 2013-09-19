@@ -1,4 +1,7 @@
 (function (App) {
+    
+    var photoUrl; // don't remove this until we have a better solution
+
     App.populator('home', function (page) {
         $(page)
             .on('click', "#camBtn", function(){
@@ -11,9 +14,15 @@
                     }
                 })})
             .on('click', "#sendBtn", function() {
+                var message; 
                 if ($('#message').val().replace(' ','') != '') {
                     message = $('#message').val();
                 }
+                cards.kik.send({
+                    title : 'Ping!',
+                    text : message,
+                    data : { pic : photoUrl }
+                });
             });
     });
 
@@ -29,10 +38,19 @@
         });
     });
 
+    App.populator('receiving', function (page, json) {
+        $('#received-photo').attr('src', json.pic);
+    });
 
-    try {
-        App.restore();
-    } catch (err) {
-        App.load('home');
+    if (cards.kik.message) {
+        App.load('receiving', cards.kik.message.data);
+    } else {
+        try {
+            App.restore();
+        } catch (err) {
+            App.load('home');
+        }  
     }
+
+    
 })(App);
