@@ -23,19 +23,20 @@
         $(page)
             .on('click', "#btn-post", function() {
                 var photoUrl = $('#photo').attr('src');
-                App.load('test', { photo: photoUrl });
+                App.load('post-to-group', { photo : photoUrl });
             });
     });
 
     App.populator('post-to-group', function (page, json) {
         $(page)
             .on('click', ".receiver", function(){
-                if ($(this).hasClass("selected")) {
-                    $(this).removeClass("selected");
-                } else {
-                    $(this).addClass("selected");
-                }
+                var groupname = $(this).text();
+                App.load('groupphotos', { group : groupname });
             });
+    });
+
+    App.populator('groupphotos', function (page, json) {
+        $(page).find('.app-title').text(json.group);
     });
 
     App.populator('view-groups', function (page, json) {
