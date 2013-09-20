@@ -7,8 +7,9 @@ server.listen(process.env.PORT || 5000);
 
 app.use(express.static(__dirname + '/web'));
 
-var mongoUrl = process.env.MONGOHQ_URL || "mongodb://localhost";
-var db = mongojs.connect(mongoUrl);
+var mongoUrl = process.env.MONGOHQ_URL || 'mongodb://jtupiter:jtupiter@paulo.mongohq.com:10083/app18202185';
+var collections = ["users", "groups"]
+var db = mongojs.connect(mongoUrl, collections);
 
 // Needed to have an incrementing index for each database
 function insertDocument(doc, targetCollection) {
@@ -41,24 +42,36 @@ app.get('/', function(req, res){
 });
 
 app.get('/user/:username', function(req, res){
-    user = db.users.find({name:req.params.username})
-    if (!user){
-        user = insertDocument({name:req.params.username}, db.users);
-    }
-    res.send(user);
+    db.users.find({name:req.params.username}, function(err, users){
+        user = users[0]
+        if (!user){
+            user = insertDocument({name:req.params.username}, db.users);
+        }
+        res.send(user);
+    });
 });
 
 app.post('/user/:username', function(req, res){
-    user = db.users.update({name:req.params.username}, {$push: {groups: req.body['group']}})
-    res.send(user);
+    db.users.update({name:req.params.username}, {$push: {groups: req.body['group']}}, function(err, users){
+        res.send(users[0]);
+    });
 });
 
 app.post('/group/:id', function(req, res){
+    var group;
     if (!req.params.id){
         group = insertDocument({name:req.body['name']}, db.groups);
     }
     else {
-        group = db.groups.update({_id:req.params.id}, {$push: {photos: req.body['photo']}})
+        db.groups.update({_id:req.params.id}, {$push: {photos: req.body['photo']}}, function(err, groups){
+            group = groups[0];
+        })
     }
     res.send(group);
+});
+
+app.get('/group/:id', function(req, res){
+    db.groups.find({_id: req.params.id}, function(err, groups){
+        res.send(groups[0]);
+    });
 });

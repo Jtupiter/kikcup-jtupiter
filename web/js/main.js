@@ -8,18 +8,9 @@
             user_data = data;
         });
     });*/
-    $.get( "/user/jtupiter", function(data) {
-            user = data;
-            console.log(user);
-        });
-    user = {
-        id: 1, 
-        name: "jtupiter", 
-        groups:[{id: 1, name: "The Boys", photos:["url_boy1", "url_boy2"]}, {id: 2, name: "The Girls", photos:["url_girl1", "url_girl2"]}]}
-    for (var i = 0; i < user.groups.length;i++){
-        $('#group-edit-list').append('<li class="group" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
-        $('#group-list').append('<li class="receiver" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
-    }
+    $.get("/user/jtupiter", function(data) {
+        user = data;
+    });
     
     App.populator('home', function (page) {
         $(page)
@@ -46,11 +37,15 @@
                 var group_id = $(this).data('group');
                 App.load('groupphotos', { id: group_id, group_name : group_name });
             });
+        for (var i = 0; i < user.groups.length;i++){
+            $(page).find('#group-edit-list').append('<li class="group" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
+            $(page).find('#group-list').append('<li class="receiver" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
+        }
     });
 
     App.populator('groupphotos', function (page, json) {
         $(page).find('.app-title').text(json.group_name);
-        $.post( "/group/" + json.id, function(data) {
+        $.get( "/group/" + json.id, function(data) {
             user_data = data;
         });
     });
@@ -58,9 +53,13 @@
     App.populator('view-groups', function (page, json) {
         $(page)
             .on('click', ".receiver", function(){
-                var groupname = $(this).text();
-                App.load('groupphotos', { group : groupname });
+                var group_name = $(this).text();
+                App.load('groupphotos', { id: group_id, group_name : group_name });
             });
+        for (var i = 0; i < user.groups.length;i++){
+            $(page).find('#group-edit-list').append('<li class="group" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
+            $(page).find('#group-list').append('<li class="receiver" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
+        }
     });
 
     try {
