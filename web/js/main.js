@@ -55,9 +55,17 @@
             var photoUrl = $(this).attr('image');
             App.load('photopage', { photo : photoUrl });
         });
+
+        $(page).on('click', '#invite', function () {
+            cards.kik.send({
+                title : 'Photobook Invite' ,
+                text : 'Join my Photobook group!' ,
+                data: { some : 'json' }
+            });
+        });
     });
 
-    App.populator('view-groups', function (page, json) {
+    App.populator('view-groups', function (page) {
         $(page)
             .on('click', ".group", function(){
                 var group_name = $(this).text();
@@ -67,6 +75,13 @@
         for (var i = 0; i < user.groups.length;i++){
             $(page).find('#group-edit-list').append('<li class="group" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
         }
+
+        $(page).on('click', '#add-new-group', function () {
+            newgroupname = $(page).find('#new-group').val();
+            // INITIALIZE GROUP IN DATABASE
+            // ALSO ADD GROUP TO USER
+            App.load('view-groups');
+        });
     });
 
     App.populator('photopage', function (page, json) {
