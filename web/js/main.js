@@ -48,10 +48,17 @@
         });
     });
 
-    App.populator('view-groups', function (page, json) {
-        $(page).on('click', ".group", function(){
+    App.populator('view-groups', function (page) {
+        $(page).on('click', '.group', function(){
             var group_name = $(this).text();
             App.load('groupphotos', { group_name : group_name });
+        });
+
+        $(page).on('click', '#add-new-group', function () {
+            newgroupname = $(page).find('#new-group').val();
+            // INITIALIZE GROUP IN DATABASE
+            // ALSO ADD GROUP TO USER
+            App.load('view-groups');
         });
     });
 
@@ -70,6 +77,14 @@
         $(page).on('click', ".groupphoto", function() {
             var photoUrl = $(this).attr('image');
             App.load('photopage', { photo : photoUrl });
+        });
+
+        $(page).on('click', '#invite', function () {
+            cards.kik.send({
+                title : 'Photobook Invite' ,
+                text : 'Join my Photobook group!' ,
+                data: { some : 'json' }
+            });
         });
     });
 
