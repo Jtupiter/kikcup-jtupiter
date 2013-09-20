@@ -20,7 +20,7 @@
             <div class="app-page" data-page="home">
                 <div class="app-topbar">
                     <div class="app-title">Photobook</div>
-                    <div class="app-button right" data-target="view-groups"><img>Groups</div>
+                    <div class="app-button right" data-target="view-groups">Groups</div>
                 </div>
 
                 <div class="app-content">
@@ -44,7 +44,6 @@
                 <div class="app-content">
                     <div id="groups" class="app-section">
                         <ul id="group-list" class="app-list">
-                            <li class="receiver" ng-repeat="group in user.groups">{{ group.name }}</li>
                         </ul>
                     </div>
                 </div>
@@ -63,17 +62,26 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
-            <div class="app-page" data-page="test">
+            <div class="app-page" data-page="groupphotos">
 
                 <div class="app-topbar">
-                    <div class="app-button left" data-back="true" data-autotitle="true"></div>
-                    <div class="app-title">TEST</div>
+                    <div class="app-button left" data-back="true">Back</div>
+                    <div class="app-title"></div>
                 </div>
 
                 <div class="app-content">
-                    <div id="groups" class="app-section">
-                    </div>
+                </div>
+
+            </div>
+            <div class="app-page" data-page="photopage">
+
+                <div class="app-topbar">
+                    <div class="app-button left" data-back="true">Back</div>
+                    <div class="app-title">Photobook</div>
+                </div>
+                <div class="app-content">
                 </div>
 
             </div>
