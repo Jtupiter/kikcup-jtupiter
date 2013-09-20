@@ -78,9 +78,10 @@
 
         $(page).on('click', '#add-new-group', function () {
             newgroupname = $(page).find('#new-group').val();
-            // INITIALIZE GROUP IN DATABASE
-            // ALSO ADD GROUP TO USER
-            App.load('view-groups');
+            $.post("/newgroup/", {name: newgroupname}, function(data) {
+                group_data = data;
+                $(page).find('#group-edit-list').append('<li class="group" data-group="'+ group_data._id +'">'+ group_data.name +'</li>');
+            });
         });
     });
 
