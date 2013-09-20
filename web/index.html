@@ -17,7 +17,6 @@
         <!-- Pages -->
         <div ng-controller="PingCtrl">
             <div class="app-page" data-page="home">
-
                 <div class="app-topbar">
                     <div class="app-title">Photobook</div>
                     <div class="app-button right" data-target="contacts"><img>Groups</div>
@@ -43,11 +42,9 @@
 
                 <div class="app-content">
                     <div id="groups" class="app-section">
-
                         <ul id="groupList" class="app-list">
                             <label>Groups:</label>
                             <li class="receiver" ng-repeat="group in user.groups">{{ group.name }}</li>
-
                         </ul>
                     </div>
                 </div>
