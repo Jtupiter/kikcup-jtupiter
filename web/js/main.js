@@ -8,6 +8,10 @@
             user_data = data;
         });
     });*/
+    $.get( "/user/jtupiter", function(data) {
+            user = data;
+            console.log(user);
+        });
     user = {
         id: 1, 
         name: "jtupiter", 
@@ -53,14 +57,10 @@
 
     App.populator('view-groups', function (page, json) {
         $(page)
-            .on('click', ".edit-groups", function(){
-                if ($(this).hasClass("selected")) {
-                    $(this).removeClass("selected");
-                } else {
-                    $(this).addClass("selected");
-                }
+            .on('click', ".receiver", function(){
+                var groupname = $(this).text();
+                App.load('groupphotos', { group : groupname });
             });
-
     });
 
     try {
