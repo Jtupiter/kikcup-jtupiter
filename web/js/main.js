@@ -14,14 +14,14 @@
         $(page)
             .on('click', "#btn-post", function() {
                 var photoUrl = $('#photo').attr('src');
-                App.load('post-to-group', photoUrl);
+                App.load('test', { photo: photoUrl });
             });
     });
 
-    App.populator('post-to-group', function (page, photourl) {
+    App.populator('post-to-group', function (page, json) {
         $(page)
             .on('click', ".receiver", function(){
-                if ($(this).hasClass("selected")){
+                if ($(this).hasClass("selected")) {
                     $(this).removeClass("selected");
                 } else {
                     $(this).addClass("selected");
