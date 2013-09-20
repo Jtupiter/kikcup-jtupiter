@@ -1,4 +1,13 @@
 (function (App) {
+    /* RECEIVING A GROUP INVITATION
+    if (cards.kik.message) {
+        // ADD GROUP (json passed in cards.kik.send) TO THE CURRENT USER IN MONGODB
+        App.load('view-groups');
+    }
+    */
+
+
+
     /*cards.kik.getUser(function (user) {
         if ( !user ) {
             // user denied access to their information
@@ -8,7 +17,7 @@
             user_data = data;
         });
     });*/
-    $.get("/user/jtupiter", function(data) {
+    $.get("/user/jtupiter", function (data) {
         user = data;
     });
     
@@ -44,7 +53,7 @@
 
     App.populator('group-photos', function (page, json) {
         $(page).find('.app-title').text(json.group_name);
-        $.get( "/group/" + json.id, function(data) {
+        $.get( "/group/" + json.id, function (data) {
             group_data = data;
             var imagearray = group_data.photos;
             for (var i = 0; i < imagearray.length; i++) {
@@ -81,6 +90,10 @@
             // INITIALIZE GROUP IN DATABASE
             // ALSO ADD GROUP TO USER
             App.load('view-groups');
+        });
+
+        $(page).on('click', '#edit', function () {
+
         });
     });
 

@@ -48,6 +48,7 @@ app.get('/user/:username', function(req, res){
             user = insertDocument({name:req.params.username, groups:[]}, db.users);
         }
         res.send(user);
+        log.(user);
     });
 });
 
