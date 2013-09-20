@@ -1,4 +1,13 @@
 (function (App) {
+    /* RECEIVING A GROUP INVITATION
+    if (cards.kik.message) {
+        // ADD GROUP (json passed in cards.kik.send) TO THE CURRENT USER IN MONGODB
+        App.load('view-groups');
+    }
+    */
+
+
+
     /*cards.kik.getUser(function (user) {
         if ( !user ) {
             // user denied access to their information
@@ -8,7 +17,8 @@
             user_data = data;
         });
     });*/
-    $.get("/user/jtupiter", function(data) {
+
+    $.get("/user/jtupiter", function (data) {
         user = data;
     });
     
@@ -44,13 +54,14 @@
 
     App.populator('group-photos', function (page, json) {
         $(page).find('.app-title').text(json.group_name);
-        $.get( "/group/" + json.id, function(data) {
+        $.get( "/group/" + json.id, function (data) {
             group_data = data;
             var imagearray = group_data.photos;
             for (var i = 0; i < imagearray.length; i++) {
                 $(page).find('.app-content').append('<div class="group-photo" image="' + imagearray[i] + '" style="background-image: url(\'' + imagearray[i] + '\'); background-size: 100%;"></div>');
             }
         });
+
         $(page).on('click', ".group-photo", function() {
             var photoUrl = $(this).attr('image');
             App.load('photopage', { photo : photoUrl });
@@ -72,7 +83,7 @@
                 var group_id = $(this).data('group');
                 App.load('group-photos', { id: group_id, group_name : group_name });
             });
-        for (var i = 0; i < user.groups.length;i++){
+        for (var i = 0; i < user.groups.length; i++){
             $(page).find('#group-edit-list').append('<li class="group" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
         }
 
@@ -82,6 +93,10 @@
                 group_data = data;
                 $(page).find('#group-edit-list').append('<li class="group" data-group="'+ group_data._id +'">'+ group_data.name +'</li>');
             });
+        });
+
+        $(page).on('click', '#edit', function () {
+
         });
     });
 
