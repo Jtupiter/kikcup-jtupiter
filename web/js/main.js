@@ -35,20 +35,16 @@
             });
     });
 
-    App.populator('groupphotos', function (page, json) {
-        $(page).find('.app-title').text(json.group);
-    });
-
     App.populator('view-groups', function (page, json) {
         $(page)
-            .on('click', ".edit-groups", function(){
-                if ($(this).hasClass("selected")) {
-                    $(this).removeClass("selected");
-                } else {
-                    $(this).addClass("selected");
-                }
+            .on('click', ".receiver", function(){
+                var groupname = $(this).text();
+                App.load('groupphotos', { group : groupname });
             });
+    });
 
+    App.populator('groupphotos', function (page, json) {
+        $(page).find('.app-title').text(json.group);
     });
 
     try {
