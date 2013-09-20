@@ -11,15 +11,16 @@
         <!-- Styles -->
         <link rel="stylesheet" href="http://cdn.kik.com/app/1/default.css">
         <link rel="stylesheet" href="/css/styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="/js/controllers.js"></script>
     </head>
 
-    <body>
+    <body ng-controller="PhotoBookCtrl">
         <!-- Pages -->
-        <div ng-controller="PingCtrl">
             <div class="app-page" data-page="home">
                 <div class="app-topbar">
                     <div class="app-title">Photobook</div>
-                    <div class="app-button right" data-target="groups"><img>Groups</div>
+                    <div class="app-button right" data-target="view-groups"><img>Groups</div>
                 </div>
 
                 <div class="app-content">
@@ -42,24 +43,23 @@
 
                 <div class="app-content">
                     <div id="groups" class="app-section">
-                        <ul id="groupList" class="app-list">
-                            <label>Groups:</label>
+                        <ul id="group-list" class="app-list">
                             <li class="receiver" ng-repeat="group in user.groups">{{ group.name }}</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="app-page" data-page="groups">
+            <div class="app-page" data-page="view-groups">
 
                 <div class="app-topbar">
                     <div class="app-button left" data-back="true" data-autotitle="true"></div>
-                    <div class="app-title">Groups</div>
+                    <div class="app-button right edit-groups">Edit</div>
+                    <div class="app-title">View Groups</div>
                 </div>
 
                 <div class="app-content">
                     <div id="groups" class="app-section">
-                        <ul id="groupList" class="app-list" ng-repeat="group in user.groups">
-                            <li class="group">{{ group.name }}</li>
+                        <ul id="group-edit-list" class="app-list">
                         </ul>
                     </div>
                 </div>
@@ -77,14 +77,11 @@
                 </div>
 
             </div>
-        </div>
 
         <!-- Scripts -->
         <script src="http://zeptojs.com/zepto.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
         <script src="http://cdn.kik.com/cards/0/cards.js"></script>
         <script src="http://cdn.kik.com/app/1/app.js"></script>
         <script src="/js/main.js"></script>
-        <script src="/js/controllers.js"></script>
     </body>
 </html>
