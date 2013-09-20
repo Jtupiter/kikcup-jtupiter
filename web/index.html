@@ -19,7 +19,7 @@
             <div class="app-page" data-page="home">
                 <div class="app-topbar">
                     <div class="app-title">Photobook</div>
-                    <div class="app-button right" data-target="groups"><img>Groups</div>
+                    <div class="app-button right" data-target="view-groups">Groups</div>
                 </div>
 
                 <div class="app-content">
@@ -44,35 +44,24 @@
                     <div id="groups" class="app-section">
                         <ul id="groupList" class="app-list">
                             <label>Groups:</label>
-                            <li class="receiver" ng-repeat="group in user.groups">{{ group.name }}</li>
+                            <li class="app-button receiver" ng-repeat="group in user.groups">{{ group.name }}</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="app-page" data-page="groups">
+            <div class="app-page" data-page="view-groups">
 
                 <div class="app-topbar">
                     <div class="app-button left" data-back="true" data-autotitle="true"></div>
-                    <div class="app-title">Groups</div>
+                    <div class="app-title">View groups</div>
                 </div>
 
                 <div class="app-content">
                     <div id="groups" class="app-section">
-                        <ul id="groupList" class="app-list" ng-repeat="group in user.groups">
-                            <li class="group">{{ group.name }}</li>
+                        <ul class="app-list" ng-repeat="group in user.groups">
+                            <label>Groups:</label>
+                            <li class="app-button group">{{ group.name }}</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="app-page" data-page="test">
-
-                <div class="app-topbar">
-                    <div class="app-button left" data-back="true" data-autotitle="true"></div>
-                    <div class="app-title">TEST</div>
-                </div>
-
-                <div class="app-content">
-                    <div id="groups" class="app-section">
                     </div>
                 </div>
 
