@@ -17,6 +17,7 @@
             user_data = data;
         });
     });*/
+
     $.get("/user/jtupiter", function (data) {
         user = data;
     });
@@ -60,6 +61,7 @@
                 $(page).find('.app-content').append('<div class="group-photo" image="' + imagearray[i] + '" style="background-image: url(\'' + imagearray[i] + '\'); background-size: 100%;"></div>');
             }
         });
+
         $(page).on('click', ".group-photo", function() {
             var photoUrl = $(this).attr('image');
             App.load('photopage', { photo : photoUrl });
@@ -81,7 +83,7 @@
                 var group_id = $(this).data('group');
                 App.load('group-photos', { id: group_id, group_name : group_name });
             });
-        for (var i = 0; i < user.groups.length;i++){
+        for (var i = 0; i < user.groups.length; i++){
             $(page).find('#group-edit-list').append('<li class="group" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
         }
 

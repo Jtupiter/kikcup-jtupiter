@@ -42,7 +42,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/user/:username', function(req, res){
-    db.users.find({name:req.params.username}, function(err, users){
+    db.users.find({name: req.params.username}, function(err, users){
         user = users[0]
         if (!user){
             user = insertDocument({name:req.params.username, groups:[]}, db.users);
@@ -59,8 +59,8 @@ app.post('/user/:username', function(req, res){
 });
 
 app.get('/group/:id', function(req, res){
-    console.log(req.params.id);
-    db.groups.find({_id: req.params.id}, function(err, groups){
+    var paramsID = Number(req.params.id);
+    db.groups.find({_id: paramsID}, function(err, groups){
         console.log(groups);
         res.send(groups[0]);
     });
