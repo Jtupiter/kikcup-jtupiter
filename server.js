@@ -45,22 +45,30 @@ app.get('/user/:username', function(req, res){
     db.users.find({name:req.params.username}, function(err, users){
         user = users[0]
         if (!user){
-            user = insertDocument({name:req.params.username}, db.users);
+            user = insertDocument({name:req.params.username, groups:[]}, db.users);
         }
         res.send(user);
     });
 });
 
 app.post('/user/:username', function(req, res){
-    db.users.update({name:req.params.username}, {$push: {groups: req.body['group']}}, function(err, users){
+    db.users.update({name:req.params.username}, {$push: {groups: {id: req.body['id'], name: req.body['group']}}}, function(err, users){
         res.send(users[0]);
+    });
+});
+
+app.get('/group/:id', function(req, res){
+    console.log(req.params.id);
+    db.groups.find({_id: req.params.id}, function(err, groups){
+        console.log(groups);
+        res.send(groups[0]);
     });
 });
 
 app.post('/group/:id', function(req, res){
     var group;
     if (!req.params.id){
-        group = insertDocument({name:req.body['name']}, db.groups);
+        group = insertDocument({name:req.body['name'], photos:[]}, db.groups);
     }
     else {
         db.groups.update({_id:req.params.id}, {$push: {photos: req.body['photo']}}, function(err, groups){
@@ -68,10 +76,4 @@ app.post('/group/:id', function(req, res){
         })
     }
     res.send(group);
-});
-
-app.get('/group/:id', function(req, res){
-    db.groups.find({_id: req.params.id}, function(err, groups){
-        res.send(groups[0]);
-    });
 });
