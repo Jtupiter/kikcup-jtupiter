@@ -1,10 +1,12 @@
 /* put stuff here */
-#secPhoto {
-    height: 50%;
+
+#sec-photo {
+    height: 75%;
     padding: 0.5em;
+    background-color: #808080;
 }
 
-#camBtn {
+#btn-cam {
     height: 100%;
 }
 
@@ -16,15 +18,22 @@
     height: 100%;
     margin: auto;
 }
-.thumbBtn {
-    position: absolute;
-    bottom: 50px;
+
+#groupphotos .app-content div {
+    display: inline-block;
+    width: 30%;
+    border: 3px solid black;
+    margin: 2px;
+    height: 0;
+    padding-bottom: 30%;
 }
 
-#thumbsUp {
-    left: 50px;
+#photopage .app-content {
+    background-color: black;
 }
 
-#thumbsDown{
-    right: 50px;
+#pagephoto {
+    height: 100%;
+    display: block;
+    margin: auto;
 }

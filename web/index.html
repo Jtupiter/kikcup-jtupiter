@@ -15,75 +15,78 @@
 
     <body>
         <!-- Pages -->
-            <div class="app-page" data-page="home">
-                <div class="app-topbar">
-                    <div class="app-title">Photobook</div>
-                    <div class="app-button right" data-target="view-groups">Groups</div>
-                </div>
-
-                <div class="app-content">
-                    <div class="app-section" id="sec-photo">
-                        <div class="app-button" id="btn-cam"><img id="photo" src="img/iphoto.png"></div>
-                    </div>
-
-                    <div class="app-section">
-                        <div class="app-button" id="btn-post">Post!</div>
-                    </div>
-                </div>
-
+        <div class="app-page" data-page="home">
+            <div class="app-topbar">
+                <div class="app-title">Photobook</div>
+                <div class="app-button right" data-target="view-groups">Groups</div>
             </div>
-            <div class="app-page" data-page="post-to-group">
 
-                <div class="app-topbar">
-                    <div class="app-button left" data-back="true" data-autotitle="true"></div>
-                    <div class="app-title">Post to group</div>
+            <div class="app-content">
+                <div class="app-section" id="sec-photo">
+                    <div class="app-button" id="btn-cam"><img id="photo" src="img/default.png"></div>
                 </div>
 
-                <div class="app-content">
-                    <div id="groups" class="app-section">
-                        <ul id="group-list" class="app-list">
-                        </ul>
-                    </div>
+                <div class="app-section">
+                    <div class="app-button" id="btn-post">Post!</div>
                 </div>
-
             </div>
-            <div class="app-page" data-page="view-groups">
 
-                <div class="app-topbar">
-                    <div class="app-button left" data-back="true" data-autotitle="true"></div>
-                    <div class="app-title">View Groups</div>
-                </div>
+        </div>
+        <div class="app-page" data-page="post-to-group">
 
-                <div class="app-content">
-                    <div id="groups" class="app-section">
-                        <ul id="group-edit-list" class="app-list">
-                        </ul>
-                    </div>
-                </div>
-
+            <div class="app-topbar">
+                <div class="app-button left" data-back="true">Back</div>
+                <div class="app-title">Post to group</div>
             </div>
-            <div class="app-page" data-page="groupphotos">
 
-                <div class="app-topbar">
-                    <div class="app-button left" data-back="true">Back</div>
-                    <div class="app-title"></div>
+            <div class="app-content">
+                <div id="groups" class="app-section">
+                    <ul id="group-list" class="app-list">
+                    </ul>
                 </div>
-
-                <div class="app-content">
-                </div>
-
             </div>
-            <div class="app-page" data-page="photopage">
 
-                <div class="app-topbar">
-                    <div class="app-button left" data-back="true">Back</div>
-                    <div class="app-title">Photobook</div>
-                </div>
-                <div class="app-content">
-                    <img>
-                </div>
+        </div>
+        <div class="app-page" data-page="view-groups">
 
+            <div class="app-topbar">
+                <div class="app-button left" data-back="true">Back</div>
+                <div class="app-title">View Groups</div>
+                <div class="app-button right">Create</div>
             </div>
+
+            <div class="app-content">
+                <div id="groups" class="app-section">
+                    <ul id="group-edit-list" class="app-list">
+                    </ul>
+                </div>
+                <input class="app-input" id="new-group">
+                <div class="app-button" id="add-new-group"></div>
+            </div>
+
+        </div>
+        <div class="app-page" id="groupphotos" data-page="groupphotos">
+
+            <div class="app-topbar">
+                <div class="app-button left" data-back="true">Back</div>
+                <div class="app-title"></div>
+            </div>
+
+            <div class="app-content">
+            </div>
+
+        </div>
+        <div class="app-page" id="photopage" data-page="photopage">
+
+            <div class="app-topbar">
+                <div class="app-button left" data-back="true">Back</div>
+                <div class="app-title">Photobook</div>
+            </div>
+            <div class="app-content">
+                <img id="pagephoto">
+            </div>
+
+        </div>
 
         <!-- Scripts -->
         <script src="http://zeptojs.com/zepto.min.js"></script>
