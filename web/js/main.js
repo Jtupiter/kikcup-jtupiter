@@ -61,8 +61,9 @@
 
     App.populator('view-groups', function (page, json) {
         $(page)
-            .on('click', ".receiver", function(){
+            .on('click', ".group", function(){
                 var group_name = $(this).text();
+                var group_id = $(this).data('group');
                 App.load('groupphotos', { id: group_id, group_name : group_name });
             });
         for (var i = 0; i < user.groups.length;i++){
