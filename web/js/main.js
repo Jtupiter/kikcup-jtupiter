@@ -102,6 +102,7 @@
 
 
     App.populator('invitepage', function (page, json) {
+        $(page).find('#invitebutton').innerHTML = json.title;
         $(page).on('click', '#invitebutton', function () {
             $.post("/user/" + user.name, {id: json.data.groupinvid, group: json.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);});
             App.load('view-groups');
