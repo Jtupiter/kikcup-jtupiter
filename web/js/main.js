@@ -102,19 +102,18 @@
 
 
     App.populator('invitepage', function (page, json) {
-        $(page).find('#invitebutton').text(json.groupinvid);
+        $(page).find('#invitebutton').text("Join " + json.groupinvname);
         $(page).on('click', '#invitebutton', function () {
-            $.post("/user/" + user.name, {id: json.groupinvid, group: json.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);});
-            App.load('view-groups');
+            $.post("/user/" + user.name, {id: json.groupinvid, group: json.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);App.load('view-groups');});
         });
     });
 
-    
+    /*
     var testmessage = {
         title : 'Photobook Invite' ,
         text : 'Join my Photobook group!' ,
         data: { groupinvid : 4 , groupinvname : "Charlestest" }
-    }
+    }*/
 
     if (cards.kik.message) {
         App.load('invitepage', cards.kik.message);
