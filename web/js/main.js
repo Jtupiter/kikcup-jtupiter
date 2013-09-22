@@ -9,7 +9,7 @@
 
 
     cards.kik.getUser(function (fetched) {
-        if ( !user ) {
+        if ( !fetched ) {
             alert("error: your phone denied you access to your information :s");
             return;
         }
