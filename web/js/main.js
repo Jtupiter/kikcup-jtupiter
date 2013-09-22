@@ -100,9 +100,9 @@
     });
 
 
-    App.populator('invitepage', function (page) {
+    App.populator('invitepage', function (page, json) {
         $(page).on('click', '#invitebutton', function () {
-            $.post("/user/" + user.name, {id: cards.kik.message.data.groupinvid, group: cards.kik.message.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);App.load('view-groups');});
+            $.post("/user/" + user.name, {id: json.data.groupinvid, group: json.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);App.load('view-groups');});
         });
     });
 
@@ -114,7 +114,7 @@
     }*/
 
     if (cards.kik.message) {
-        App.load('invitepage');
+        App.load('invitepage', cards.kik.message);
     } else {
         try {
             App.restore();
