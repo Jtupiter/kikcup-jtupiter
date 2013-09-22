@@ -50,7 +50,7 @@
         <div class="app-page" data-page="view-groups">
 
             <div class="app-topbar">
-                <div class="app-button left" data-back="true">Back</div>
+                <div class="app-button left" data-target="home">Home</div>
                 <div class="app-title">View Groups</div>
             </div>
 
@@ -60,7 +60,7 @@
                     </ul>
                 </div>
                 <div class="app-section">
-                    <input class="app-input" id="new-group" placeholder="(Enter groupname here)"></input>
+                    <input class="app-input" id="new-group" maxlength="30" placeholder="(Enter groupname here)"></input>
                     <div class="app-button" id="add-new-group">Create a new group!</div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
         <div class="app-page" id="group-photos" data-page="group-photos">
 
             <div class="app-topbar">
-                <div class="app-button left" data-target="home">Back</div>
+                <div class="app-button left" data-target="home">Home</div>
                 <div class="app-title"></div>
                 <div class="app-button right" id="invite">Invite</div>
             </div>
@@ -98,7 +98,24 @@
             </div>
             <div class="app-content">
                 <div class="app-section">
-                    <p>Free mongoDB hosting is slow af, please wait lol</p>
+                    <ul>
+                        <li>Free mongoDB hosting is slow af, please wait lol</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="app-page" id="invitepage" data-page="invitepage">
+
+            <div class="app-topbar">
+                <div class="app-button left" data-target="home">Home</div>
+                <div class="app-title">Invitation</div>
+            </div>
+            <div class="app-content">
+                <div class="app-section">
+                    <ul>
+                        <li class="app-button" id="invitebutton">Accept invitation</li>
+                    </ul>
                 </div>
             </div>
 
@@ -106,6 +123,7 @@
 
         <!-- Scripts -->
         <script src="http://zeptojs.com/zepto.min.js"></script>
+        <!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
         <script src="http://cdn.kik.com/cards/0/cards.js"></script>
         <script src="http://cdn.kik.com/app/1/app.js"></script>
         <script src="/js/main.js"></script>

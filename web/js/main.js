@@ -1,11 +1,22 @@
 (function (App) {
-    
+
     var user;
+
+    cards.kik.getUser(function (fetched) {
+        if ( !fetched ) {
+            alert("error: your phone denied you access to your information :s");
+            return;
+        }
+        $.get( "/user/" + fetched.username, function (data) {
+            user = data;
+        });
+    });
+
+    /*
+    $.get("/user/jtupiter", function (data) {
+        user = data;
+    });*/
     
-
-
-    
-
     
     App.populator('home', function (page) {
         $(page).on('click', "#btn-cam", function(){
@@ -89,43 +100,26 @@
     });
 
 
-    if (cards.kik.message) {
-        cards.kik.getUser(function (fetched) {
-            if ( !fetched ) {
-                alert("error: your phone denied you access to your information :s");
-                return;
-            }
-            $.get( "/user/" + fetched.username, function (data) {
-                user = data;
-                $.post("/user/" + user.name, {id: cards.kik.message.data.groupinvid, group: cards.kik.message.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);App.load('view-groups');});
-            });
+    App.populator('invitepage', function (page) {
+        $(page).on('click', '#invitebutton', function () {
+            $.post("/user/" + user.name, {id: cards.kik.message.data.groupinvid, group: cards.kik.message.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);App.load('view-groups');});
         });
-        
-        /*$.get("/user/NaziNigger69", function (data) {
-            user = data;
-            
-        });*/
+    });
 
+    /*
+    var testmessage = {
+        title : 'Photobook Invite' ,
+        text : 'Join my Photobook group!' ,
+        data: { groupinvid : 4 , groupinvname : "Charlestest" }
+    }*/
+
+    if (cards.kik.message) {
+        App.load('invitepage');
     } else {
         try {
             App.restore();
         } catch (err) {
-            cards.kik.getUser(function (fetched) {
-                if ( !fetched ) {
-                    alert("error: your phone denied you access to your information :s");
-                    return;
-                }
-                $.get( "/user/" + fetched.username, function (data) {
-                    user = data;
-                    App.load('home');
-                });
-            });
-
-            /*$.get("/user/NaziNigger69", function (data) {
-                user = data;
-                App.load('home');
-            });*/
-
+            App.load('home');
         }
     }
 
