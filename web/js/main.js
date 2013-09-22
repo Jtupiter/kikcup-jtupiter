@@ -98,8 +98,8 @@
 
 
     if (cards.kik.message) {
-        App.load('view-groups');
         $.post("/user/" + user.name, {id: cards.kik.message.data.groupinvid, group: cards.kik.message.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);});
+        App.load('view-groups');
     } else {
         try {
             App.restore();
