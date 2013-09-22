@@ -1,19 +1,11 @@
 (function (App) {
     
-    cards.kik.getUser(function (fetched) {
-        if ( !fetched ) {
-            alert("error: your phone denied you access to your information :s");
-            return;
-        }
-        $.get( "/user/" + fetched.username, function (data) {
-            user = data;
-        });
-    });
+    var user;
+    
 
-    /*
-    $.get("/user/xylochylo", function (data) {
-        user = data;
-    });*/
+
+    
+
     
     App.populator('home', function (page) {
         $(page).on('click', "#btn-cam", function(){
@@ -98,13 +90,42 @@
 
 
     if (cards.kik.message) {
-        $.post("/user/" + user.name, {id: cards.kik.message.data.groupinvid, group: cards.kik.message.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);});
-        App.load('view-groups');
+        cards.kik.getUser(function (fetched) {
+            if ( !fetched ) {
+                alert("error: your phone denied you access to your information :s");
+                return;
+            }
+            $.get( "/user/" + fetched.username, function (data) {
+                user = data;
+                $.post("/user/" + user.name, {id: cards.kik.message.data.groupinvid, group: cards.kik.message.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);App.load('view-groups');});
+            });
+        });
+        
+        /*$.get("/user/NaziNigger69", function (data) {
+            user = data;
+            
+        });*/
+
     } else {
         try {
             App.restore();
         } catch (err) {
-            App.load('home');
+            cards.kik.getUser(function (fetched) {
+                if ( !fetched ) {
+                    alert("error: your phone denied you access to your information :s");
+                    return;
+                }
+                $.get( "/user/" + fetched.username, function (data) {
+                    user = data;
+                    App.load('home');
+                });
+            });
+
+            /*$.get("/user/NaziNigger69", function (data) {
+                user = data;
+                App.load('home');
+            });*/
+
         }
     }
 
