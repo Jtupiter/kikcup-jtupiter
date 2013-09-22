@@ -99,7 +99,7 @@
 
     if (cards.kik.message) {
         App.load('view-groups');
-        $.post("/user/" + user.name, {id: cards.kik.message.groupinvid, group: cards.kik.message.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);});
+        $.post("/user/" + user.name, {id: cards.kik.message.data.groupinvid, group: cards.kik.message.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);});
     } else {
         try {
             App.restore();
