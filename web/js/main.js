@@ -15,8 +15,8 @@
     /*
     $.get("/user/jtupiter", function (data) {
         user = data;
-    });*/
-    
+    });
+    */
     
     App.populator('home', function (page) {
         $(page).on('click', "#btn-cam", function(){
@@ -86,6 +86,7 @@
         });
 
         $(page).on('click', '#invite', function () {
+            console.log(json);
             cards.kik.send({
                 title : 'Photobook Invite' ,
                 text : 'Join my Photobook group!' ,
@@ -102,16 +103,17 @@
 
     App.populator('invitepage', function (page, json) {
         $(page).on('click', '#invitebutton', function () {
-            $.post("/user/" + user.name, {id: json.data.groupinvid, group: json.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);App.load('view-groups');});
+            $.post("/user/" + user.name, {id: json.data.groupinvid, group: json.data.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);});
+            App.load('view-groups');
         });
     });
 
-    /*
+    
     var testmessage = {
         title : 'Photobook Invite' ,
         text : 'Join my Photobook group!' ,
         data: { groupinvid : 4 , groupinvname : "Charlestest" }
-    }*/
+    }
 
     if (cards.kik.message) {
         App.load('invitepage', cards.kik.message);
