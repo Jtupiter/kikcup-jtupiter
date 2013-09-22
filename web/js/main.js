@@ -42,6 +42,9 @@
     });
 
     App.populator('post-to-group', function (page, json) {
+        for (var i = 0; i < user.groups.length; i++){
+            $(page).find('#group-list').append('<li class="receiver app-button" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
+        }
         $(page).on('click', ".receiver", function(){
             var group_name = $(this).text();
             var group_id = $(this).data('group');
@@ -49,10 +52,32 @@
                 App.load('group-photos', $.parseJSON(group));
             });
         });
-        for (var i = 0; i < user.groups.length; i++){
-            $(page).find('#group-list').append('<li class="receiver" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
-        }
+        
     });
+
+    App.populator('view-groups', function (page) {
+        for (var i = 0; i < user.groups.length; i++){
+            $(page).find('#group-edit-list').append('<li class="group app-button" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
+        }
+        $(page)
+            .on('click', ".group", function(){
+                var group_id = $(this).data('group');
+                $.get('/group/' + group_id, function(group){
+                    App.load('group-photos', group);
+                });
+            });
+        
+        $(page).on('click', '#add-new-group', function () {
+            newgroupname = $(page).find('#new-group').val();
+            $.post("/newgroup/", {name: newgroupname}, function(group) {
+                group = $.parseJSON(group);
+                $(page).find('#new-group').val('');
+                $(page).find('#group-edit-list').append('<li class="group" data-group="'+ group._id +'">'+ group.name +'</li>');
+                $.post("/user/" + user.name, {id: group._id, group: group.name}, function(updated_user){user = $.parseJSON(updated_user);});
+            });
+        });
+    });
+
 
     App.populator('group-photos', function (page, json) {
         $(page).find('.app-title').text(json.name);
@@ -75,32 +100,6 @@
         });
     });
 
-    App.populator('view-groups', function (page) {
-        $(page)
-            .on('click', ".group", function(){
-                var group_id = $(this).data('group');
-                $.get('/group/' + group_id, function(group){
-                    App.load('group-photos', group);
-                });
-            });
-        for (var i = 0; i < user.groups.length; i++){
-            $(page).find('#group-edit-list').append('<li class="group" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
-        }
-
-        $(page).on('click', '#add-new-group', function () {
-            newgroupname = $(page).find('#new-group').val();
-            $.post("/newgroup/", {name: newgroupname}, function(group) {
-                group = $.parseJSON(group);
-                $(page).find('#new-group').val('');
-                $(page).find('#group-edit-list').append('<li class="group" data-group="'+ group._id +'">'+ group.name +'</li>');
-                $.post("/user/" + user.name, {id: group._id, group: group.name}, function(updated_user){user = $.parseJSON(updated_user);});
-            });
-        });
-
-        $(page).on('click', '#edit', function () {
-
-        });
-    });
 
     App.populator('photopage', function (page, json) {
         $(page).find('#pagephoto').attr('src', json.photo);
