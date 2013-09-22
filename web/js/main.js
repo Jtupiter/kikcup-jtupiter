@@ -8,19 +8,20 @@
 
 
 
-    /*cards.kik.getUser(function (user) {
+    cards.kik.getUser(function (fetched) {
         if ( !user ) {
-            // user denied access to their information
+            alert("error: your phone denied you access to your information :s");
             return;
         }
-        $.get( "/user/" + user.username, function(data) {
-            user_data = data;
+        $.get( "/user/" + fetched.username, function (data) {
+            user = data;
         });
-    });*/
+    });
 
+    /*
     $.get("/user/jtupiter", function (data) {
         user = data;
-    });
+    });*/
     
     App.populator('home', function (page) {
         $(page)
@@ -44,7 +45,7 @@
         $(page).on('click', ".receiver", function(){
             var group_name = $(this).text();
             var group_id = $(this).data('group');
-            $.post('/group/' + group_id, {photo: json.photo}, function(group){
+            $.post('/group/' + group_id, {photo: json.photo}, function (group){
                 App.load('group-photos', $.parseJSON(group));
             });
         });
