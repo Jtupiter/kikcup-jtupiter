@@ -1,13 +1,8 @@
 (function (App) {
-    /* RECEIVING A GROUP INVITATION
-    if (cards.kik.message) {
-        // ADD GROUP (json passed in cards.kik.send) TO THE CURRENT USER IN MONGODB
-        App.load('view-groups');
-    }
-    */
+    
 
 
-
+    /*
     cards.kik.getUser(function (fetched) {
         if ( !fetched ) {
             alert("error: your phone denied you access to your information :s");
@@ -16,29 +11,27 @@
         $.get( "/user/" + fetched.username, function (data) {
             user = data;
         });
-    });
-
-    /*
-    $.get("/user/jtupiter", function (data) {
-        user = data;
     });*/
+
+    
+    $.get("/user/xylochylo", function (data) {
+        user = data;
+    });
     
     App.populator('home', function (page) {
-        $(page)
-            .on('click', "#btn-cam", function(){
-                cards.photo.get(function (photos) {
-                    if (!photos) {
-
-                    } else {
-                        $('#photo').attr('src', photos[0]);
-                    }
-                })
-            });
-        $(page)
-            .on('click', "#btn-post", function() {
-                var photoUrl = $('#photo').attr('src');
-                App.load('post-to-group', { photo : photoUrl });
-            });
+        $(page).on('click', "#btn-cam", function(){
+            cards.photo.get(function (photos) {
+                if (!photos) {
+                    // photo cancelled
+                } else {
+                    $('#photo').attr('src', photos[0]);
+                }
+            })
+        });
+        $(page).on('click', "#btn-post", function() {
+            var photoUrl = $('#photo').attr('src');
+            App.load('post-to-group', { photo : photoUrl });
+        });
     });
 
     App.populator('post-to-group', function (page, json) {
@@ -48,6 +41,7 @@
         $(page).on('click', ".receiver", function(){
             var group_name = $(this).text();
             var group_id = $(this).data('group');
+            App.load('loading');
             $.post('/group/' + group_id, {photo: json.photo}, function (group){
                 App.load('group-photos', $.parseJSON(group));
             });
@@ -59,13 +53,13 @@
         for (var i = 0; i < user.groups.length; i++){
             $(page).find('#group-edit-list').append('<li class="group app-button" data-group="'+ user.groups[i].id +'">'+ user.groups[i].name +'</li>');
         }
-        $(page)
-            .on('click', ".group", function(){
-                var group_id = $(this).data('group');
-                $.get('/group/' + group_id, function(group){
-                    App.load('group-photos', group);
-                });
+        $(page).on('click', ".group", function(){
+            var group_id = $(this).data('group');
+            App.load('loading');
+            $.get('/group/' + group_id, function(group){
+                App.load('group-photos', group);
             });
+        });
         
         $(page).on('click', '#add-new-group', function () {
             newgroupname = $(page).find('#new-group').val();
@@ -95,7 +89,7 @@
             cards.kik.send({
                 title : 'Photobook Invite' ,
                 text : 'Join my Photobook group!' ,
-                data: { some : 'json' }
+                data: { groupinvid : json._id , groupinvname : json.name }
             });
         });
     });
@@ -105,11 +99,16 @@
         $(page).find('#pagephoto').attr('src', json.photo);
     });
 
-    try {
-        App.restore();
-    } catch (err) {
-        App.load('home');
-    }  
-
     
+    if (cards.kik.message) {
+            $.post("/user/" + user.name, {id: cards.kik.message.groupinvid, group: cards.kik.message.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);});
+        App.load('view-groups');
+    } else {
+        try {
+            App.restore();
+        } catch (err) {
+            App.load('home');
+        }
+    }
+
 })(App);

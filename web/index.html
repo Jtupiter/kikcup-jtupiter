@@ -69,12 +69,13 @@
         <div class="app-page" id="group-photos" data-page="group-photos">
 
             <div class="app-topbar">
-                <div class="app-button left" data-back="true">Back</div>
+                <div class="app-button left" data-target="home">Back</div>
                 <div class="app-title"></div>
                 <div class="app-button right" id="invite">Invite</div>
             </div>
 
             <div class="app-content">
+                <!-- fyi images get loaded in here -->
             </div>
 
         </div>
@@ -86,6 +87,19 @@
             </div>
             <div class="app-content">
                 <img id="pagephoto">
+            </div>
+
+        </div>
+        <div class="app-page" id="loading" data-page="loading">
+
+            <div class="app-topbar">
+                <div class="app-button left" data-back="true">Back</div>
+                <div class="app-title">Loading...</div>
+            </div>
+            <div class="app-content">
+                <div class="app-section">
+                    <p>Free mongoDB hosting is slow af, please wait lol</p>
+                </div>
             </div>
 
         </div>
