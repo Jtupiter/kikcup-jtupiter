@@ -1,8 +1,5 @@
 (function (App) {
     
-
-
-    /*
     cards.kik.getUser(function (fetched) {
         if ( !fetched ) {
             alert("error: your phone denied you access to your information :s");
@@ -11,12 +8,12 @@
         $.get( "/user/" + fetched.username, function (data) {
             user = data;
         });
-    });*/
+    });
 
-    
+    /*
     $.get("/user/xylochylo", function (data) {
         user = data;
-    });
+    });*/
     
     App.populator('home', function (page) {
         $(page).on('click', "#btn-cam", function(){
@@ -99,7 +96,7 @@
         $(page).find('#pagephoto').attr('src', json.photo);
     });
 
-    
+
     if (cards.kik.message) {
             $.post("/user/" + user.name, {id: cards.kik.message.groupinvid, group: cards.kik.message.groupinvname}, function(updated_user){user = $.parseJSON(updated_user);});
         App.load('view-groups');
