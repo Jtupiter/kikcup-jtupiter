@@ -29,8 +29,11 @@
                 }
             })
         });
+        
+
         $(page).on('click', "#btn-post", function() {
-            if ( $('photo').attr('src') == "img/default.png") {              
+            var currimg = $('#photo').attr('src');
+            if ( currimg == "img/default.png") {            
             } else {
                 var photoUrl = $('#photo').attr('src');
                 App.load('post-to-group', { photo : photoUrl });  
