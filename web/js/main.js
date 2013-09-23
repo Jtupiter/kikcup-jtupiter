@@ -69,7 +69,7 @@
         
         $(page).on('click', '#add-new-group', function () {
             newgroupname = $(page).find('#new-group').val();
-            if (newgroupname.replace(' ', '') != ''){
+            if (newgroupname.split(' ').join('') != ''){
                 $.post("/newgroup/", {name: newgroupname}, function(group) {
                     group = $.parseJSON(group);
                     $(page).find('#new-group').val('');
