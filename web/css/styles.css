@@ -41,3 +41,10 @@ html { -webkit-tap-highlight-color:transparent; }
 #group-edit-list li {
 
 }
+
+.app-topbar {
+    background-color: #1D2951;
+}
+.app-topbar .app-button.active {
+    background: #007BB8;
+}

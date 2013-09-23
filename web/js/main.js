@@ -13,11 +13,10 @@
         });
     });
 
-    /*
-    $.get("/user/jtupiter", function (data) {
+
+    /*$.get("/user/jtupiter", function (data) {
         user = data;
     });*/
-    
     
     App.populator('home', function (page) {
         $(page).on('click', "#btn-cam", function(){
@@ -70,12 +69,14 @@
         
         $(page).on('click', '#add-new-group', function () {
             newgroupname = $(page).find('#new-group').val();
-            $.post("/newgroup/", {name: newgroupname}, function(group) {
-                group = $.parseJSON(group);
-                $(page).find('#new-group').val('');
-                $(page).find('#group-edit-list').append('<li class="group" data-group="'+ group._id +'">'+ group.name +'</li>');
-                $.post("/user/" + user.name, {id: group._id, group: group.name}, function(updated_user){user = $.parseJSON(updated_user);});
-            });
+            if (newgroupname.replace(' ', '') != ''){
+                $.post("/newgroup/", {name: newgroupname}, function(group) {
+                    group = $.parseJSON(group);
+                    $(page).find('#new-group').val('');
+                    $(page).find('#group-edit-list').append('<li class="group" data-group="'+ group._id +'">'+ group.name +'</li>');
+                    $.post("/user/" + user.name, {id: group._id, group: group.name}, function(updated_user){user = $.parseJSON(updated_user);});
+                });
+            }
         });
     });
 

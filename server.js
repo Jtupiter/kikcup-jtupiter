@@ -50,8 +50,8 @@ app.get('/user/:username', function(req, res){
 
 app.post('/user/:username', function(req, res){
     db.users.findAndModify({
-        query: {name: req.params.username},
-        update: {$push: {groups: {id: +req.body.id, name: req.body.group}}}, //yoloing atm
+        query: {name: req.params.username, $not: {$elemMatch: { id: +req.body.id }}},
+        update: {$push: {groups: {id: +req.body.id, name: req.body.group}}},
         new: true
     }, function(err, user) {
         res.send(user);
