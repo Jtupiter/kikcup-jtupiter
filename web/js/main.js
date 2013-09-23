@@ -2,6 +2,7 @@
 
     var user;
 
+    
     cards.kik.getUser(function (fetched) {
         if ( !fetched ) {
             alert("error: your phone denied you access to your information :s");
@@ -15,8 +16,8 @@
     /*
     $.get("/user/jtupiter", function (data) {
         user = data;
-    });
-    */
+    });*/
+    
     
     App.populator('home', function (page) {
         $(page).on('click', "#btn-cam", function(){
@@ -29,8 +30,10 @@
             })
         });
         $(page).on('click', "#btn-post", function() {
-            var photoUrl = $('#photo').attr('src');
-            App.load('post-to-group', { photo : photoUrl });
+            if ( $('photo').attr('src') == "img/default.png") {
+                var photoUrl = $('#photo').attr('src');
+                App.load('post-to-group', { photo : photoUrl });                
+            }
         });
     });
 

@@ -1,7 +1,9 @@
+html { -webkit-tap-highlight-color:transparent; }
+
 #sec-photo {
     height: 75%;
     padding: 0.5em;
-    background-color: #808080;
+    background-color: #404040;
 }
 
 #btn-cam {
