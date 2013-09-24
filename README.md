@@ -1,17 +1,8 @@
-# Welcome to your starter kit
+PhotoBook
+=========
 
-### Setup
+This is a social photo-sharing app created for the Kik Messenger platform. It allows you to create groups, invite contacts to them, and post photos to share.
 
-1. Install Node.js (v0.8+) from [http://nodejs.org/](http://nodejs.org/)
-2. Run these commands:
+To run, go to card://kikcup-ping.herokuapp.com on a phone (or in Kik Messenger).
 
-```sh
-git clone git://github.com/kikinteractive/starter-kit.git
-cd starter-kit
-npm install
-```
-
-### Run debug server
-
-1. Run this command: `npm start`
-2. Go to [localhost:5000](http://localhost:5000/) in your browser to see your app
+Currently hosted on tiny free mongoDB server, so please don't use excessively!
